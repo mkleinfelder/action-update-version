@@ -59,6 +59,11 @@ const getParser = (file, options) => {
                 read: yaml_1.default.parse,
                 write: (data) => yaml_1.default.stringify(data, { indent: options.spacing }),
             };
+	case 'ts':
+	    return {
+		read: JSON.parse,
+		write: (data) => JSON.stringify(data, null, options.spacing),
+	    };
         default:
             throw new Error(`Unsupported file extension "${extension}".\nTo add it you can simply submit a PR adding a new parser.`);
     }
